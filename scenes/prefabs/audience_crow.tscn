@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c18nwf4l4als7"]
+
+[ext_resource type="Script" path="res://scripts/audience_crow.gd" id="1_khr8t"]
+[ext_resource type="PackedScene" uid="uid://cy6egk3cgsbl0" path="res://scenes/prefabs/crow.tscn" id="2_ph5li"]
+[ext_resource type="Script" path="res://scripts/walk.gd" id="3_8qq74"]
+
+[node name="AudienceCrow" type="Node2D"]
+script = ExtResource("1_khr8t")
+
+[node name="Crow" parent="." instance=ExtResource("2_ph5li")]
+flip_h = true
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource("3_8qq74")
+walkRootNode = NodePath("..")

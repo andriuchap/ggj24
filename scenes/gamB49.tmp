@@ -1,0 +1,123 @@
+[gd_scene load_steps=9 format=3 uid="uid://bbwv0j38gs6ny"]
+
+[ext_resource type="Script" path="res://scripts/comedy_game.gd" id="1_5e6nh"]
+[ext_resource type="Texture2D" uid="uid://dfyfdwh11qmeq" path="res://assets/sprites/background/Scene_Neon.png" id="2_dehqj"]
+[ext_resource type="PackedScene" uid="uid://e3l4v0rix88c" path="res://scenes/prefabs/player_crow.tscn" id="2_yb210"]
+[ext_resource type="Script" path="res://scripts/joke_container.gd" id="3_cpumt"]
+[ext_resource type="PackedScene" uid="uid://dhv2sf8oija40" path="res://scenes/prefabs/joke_request_container.tscn" id="5_hrv30"]
+[ext_resource type="PackedScene" uid="uid://dv0oin2k35fxd" path="res://scenes/prefabs/joke_card.tscn" id="5_ylw10"]
+[ext_resource type="PackedScene" uid="uid://c80367wutrqxs" path="res://scenes/prefabs/joke_inventory_item.tscn" id="7_8r16t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38i2c"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_5e6nh")
+rows = 4
+cols = 11
+vertical_gap = 100
+horizontal_gap = 100
+audience_start_pos = Vector2(780, 640)
+
+[node name="Scene" type="Sprite2D" parent="."]
+texture = ExtResource("2_dehqj")
+centered = false
+
+[node name="PlayerCrow" parent="." instance=ExtResource("2_yb210")]
+position = Vector2(-155, 627)
+mic_loc = Vector2(329, 627)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+
+[node name="Audience" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(640, 200)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_38i2c")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="JokeContainer" type="HBoxContainer" parent="Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 32
+script = ExtResource("3_cpumt")
+symbol_colors = Array[Color]([Color(0.886275, 0.192157, 0.0941176, 1), Color(0.937255, 0.8, 0, 1), Color(0, 0, 0, 1), Color(0.905882, 0.282353, 0.698039, 1), Color(0, 0.345098, 1, 1), Color(0.72549, 0.368627, 0.243137, 1), Color(1, 1, 1, 1)])
+
+[node name="JokeCard" parent="Control/PanelContainer/MarginContainer/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeCard2" parent="Control/PanelContainer/MarginContainer/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeCard3" parent="Control/PanelContainer/MarginContainer/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeRequestContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 382.0
+offset_right = 1868.0
+offset_bottom = 464.0
+theme_override_constants/separation = 16
+
+[node name="JokeRequest" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest2" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest3" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest4" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest5" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="InventoryContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 1293.0
+offset_top = 975.0
+offset_right = 1895.0
+offset_bottom = 1057.0
+
+[node name="JokeInventoryItem" parent="Control/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2
+
+[node name="JokeInventoryItem2" parent="Control/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2
+
+[node name="JokeInventoryItem3" parent="Control/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2

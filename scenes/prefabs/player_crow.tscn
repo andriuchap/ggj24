@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://e3l4v0rix88c"]
+
+[ext_resource type="Script" path="res://scripts/player_crow.gd" id="1_guhwp"]
+[ext_resource type="PackedScene" uid="uid://cy6egk3cgsbl0" path="res://scenes/prefabs/crow.tscn" id="1_rvxyl"]
+[ext_resource type="Script" path="res://scripts/walk.gd" id="3_ntr7i"]
+[ext_resource type="AudioStream" uid="uid://c2gso1hpm1ssp" path="res://assets/sounds/crow_caw.wav" id="4_n26ai"]
+[ext_resource type="Texture2D" uid="uid://bvsupwf84fkcy" path="res://assets/sprites/ui/ChatBubble.png" id="5_83ik2"]
+
+[node name="PlayerCrow" type="Node2D"]
+script = ExtResource("1_guhwp")
+
+[node name="Crow" parent="." instance=ExtResource("1_rvxyl")]
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource("3_ntr7i")
+walkRootNode = NodePath("..")
+
+[node name="JokeCaw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_n26ai")
+
+[node name="ChatBubble" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(371, -352)
+texture = ExtResource("5_83ik2")
+
+[node name="Label" type="Label" parent="ChatBubble"]
+offset_left = -248.0
+offset_top = -84.0
+offset_right = 296.0
+offset_bottom = 15.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "CAW CAW CAW!"

@@ -1,0 +1,80 @@
+[gd_scene load_steps=17 format=3 uid="uid://c80367wutrqxs"]
+
+[ext_resource type="Script" path="res://scripts/joke_inventory_item.gd" id="1_28gib"]
+[ext_resource type="Texture2D" uid="uid://b1j8adnipi0ui" path="res://assets/sprites/ui/Classic_icon.png" id="2_ki7hd"]
+[ext_resource type="Texture2D" uid="uid://b0nc6qc5d4uwa" path="res://assets/sprites/ui/Cringe_icon.png" id="2_kxh25"]
+[ext_resource type="Texture2D" uid="uid://qgvt4fb7uxfh" path="res://assets/sprites/ui/CTA_Tell.png" id="3_kbmh3"]
+[ext_resource type="Texture2D" uid="uid://c72mmrp3ahb2g" path="res://assets/sprites/ui/Dark_icon.png" id="4_5ta3o"]
+[ext_resource type="Texture2D" uid="uid://8jhcnkpup4tl" path="res://assets/sprites/ui/Vulgar_icon.png" id="5_4bkcy"]
+[ext_resource type="Texture2D" uid="uid://bxqu6fyu1qrdx" path="res://assets/sprites/ui/Witty_icon.png" id="6_lvnfm"]
+[ext_resource type="Texture2D" uid="uid://cn6yycj57cqf8" path="res://assets/sprites/ui/Physical_icon.png" id="7_js12t"]
+[ext_resource type="Texture2D" uid="uid://dqxs0ww1xcvg1" path="res://assets/sprites/ui/Any_icon.png" id="8_jam17"]
+[ext_resource type="Texture2D" uid="uid://pnyu01byervl" path="res://assets/sprites/ui/CTA_Pick.png" id="9_sywr8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wdekf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ge1hp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n4kf7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_waiyd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n65w7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sh7fh"]
+
+[node name="JokeInventoryItem" type="PanelContainer"]
+custom_minimum_size = Vector2(267, 193)
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wdekf")
+script = ExtResource("1_28gib")
+symbol_tex = Array[Texture2D]([ExtResource("2_kxh25"), ExtResource("2_ki7hd"), ExtResource("4_5ta3o"), ExtResource("5_4bkcy"), ExtResource("6_lvnfm"), ExtResource("7_js12t"), ExtResource("8_jam17")])
+action_tex = Array[Texture2D]([ExtResource("9_sywr8"), ExtResource("3_kbmh3")])
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ge1hp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_n4kf7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_waiyd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_n65w7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sh7fh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+mouse_filter = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ki7hd")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ki7hd")
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ki7hd")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 111
+theme_override_constants/margin_right = 34
+theme_override_constants/margin_bottom = 20
+
+[node name="ActionButton" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+texture = ExtResource("3_kbmh3")

@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=3 uid="uid://dv0oin2k35fxd"]
+
+[ext_resource type="Texture2D" uid="uid://c3lf0to3vsj6i" path="res://assets/sprites/ui/Classic_card.png" id="1_1vy6n"]
+[ext_resource type="Script" path="res://scripts/joke_card.gd" id="1_75lrt"]
+[ext_resource type="Texture2D" uid="uid://5lgdi5wg76q8" path="res://assets/sprites/ui/Cringe_card.png" id="3_04a3e"]
+[ext_resource type="Texture2D" uid="uid://pnyu01byervl" path="res://assets/sprites/ui/CTA_Pick.png" id="3_vyoyi"]
+[ext_resource type="Texture2D" uid="uid://di5rdder7pieu" path="res://assets/sprites/ui/Dark_card.png" id="4_ggna5"]
+[ext_resource type="Texture2D" uid="uid://bcmuc34cx100i" path="res://assets/sprites/ui/Vulgar_card.png" id="5_jful7"]
+[ext_resource type="Texture2D" uid="uid://c21dncxptneey" path="res://assets/sprites/ui/Witty_card.png" id="6_7d6og"]
+[ext_resource type="Texture2D" uid="uid://b4aout1cvvwoc" path="res://assets/sprites/ui/Physical_card.png" id="7_723dh"]
+[ext_resource type="Texture2D" uid="uid://bjy48g11ldw18" path="res://assets/sprites/ui/Any_card.png" id="8_bp3c3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wfrq"]
+texture = ExtResource("1_1vy6n")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qty7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypbbk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4b5a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nosf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_okqqk"]
+
+[node name="JokeCard" type="PanelContainer"]
+custom_minimum_size = Vector2(270, 193)
+theme_override_styles/panel = SubResource("StyleBoxTexture_1wfrq")
+script = ExtResource("1_75lrt")
+card_textures = Array[Texture2D]([ExtResource("3_04a3e"), ExtResource("1_1vy6n"), ExtResource("4_ggna5"), ExtResource("5_jful7"), ExtResource("6_7d6og"), ExtResource("7_723dh"), ExtResource("8_bp3c3")])
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4qty7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ypbbk")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_h4b5a")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6nosf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_okqqk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 111
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="FlavorLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Racist joke"
+
+[node name="CardSymbol" type="ColorRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+size_flags_horizontal = 10
+mouse_filter = 2
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Don't start this one before looking over your shoulder..."
+autowrap_mode = 2
+
+[node name="PickBtn" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("3_vyoyi")

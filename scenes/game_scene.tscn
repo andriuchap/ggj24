@@ -1,0 +1,152 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbwv0j38gs6ny"]
+
+[ext_resource type="Script" path="res://scripts/comedy_game.gd" id="1_5e6nh"]
+[ext_resource type="Texture2D" uid="uid://dfyfdwh11qmeq" path="res://assets/sprites/background/Scene_Neon.png" id="2_dehqj"]
+[ext_resource type="PackedScene" uid="uid://e3l4v0rix88c" path="res://scenes/prefabs/player_crow.tscn" id="2_yb210"]
+[ext_resource type="Script" path="res://scripts/joke_container.gd" id="3_cpumt"]
+[ext_resource type="Texture2D" uid="uid://ds57vo3n6fhra" path="res://assets/sprites/ui/Note BG.png" id="4_lyk4d"]
+[ext_resource type="PackedScene" uid="uid://dhv2sf8oija40" path="res://scenes/prefabs/joke_request_container.tscn" id="5_hrv30"]
+[ext_resource type="PackedScene" uid="uid://dv0oin2k35fxd" path="res://scenes/prefabs/joke_card.tscn" id="5_ylw10"]
+[ext_resource type="PackedScene" uid="uid://c80367wutrqxs" path="res://scenes/prefabs/joke_inventory_item.tscn" id="7_8r16t"]
+[ext_resource type="Texture2D" uid="uid://solyv2e21a1o" path="res://assets/sprites/ui/EXAMPLE_note copy.png" id="9_ogaoj"]
+[ext_resource type="Texture2D" uid="uid://1gef42oplq8u" path="res://assets/sprites/ui/Apibraukimas.png" id="10_2we5b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2srcm"]
+texture = ExtResource("9_ogaoj")
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_5e6nh")
+rows = 3
+cols = 11
+vertical_gap = 100
+horizontal_gap = 100
+audience_start_pos = Vector2(780, 640)
+
+[node name="Scene" type="Sprite2D" parent="."]
+texture = ExtResource("2_dehqj")
+centered = false
+
+[node name="PlayerCrow" parent="." instance=ExtResource("2_yb210")]
+position = Vector2(-155, 627)
+mic_loc = Vector2(329, 627)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+
+[node name="AudioListener2D" type="AudioListener2D" parent="Camera2D"]
+
+[node name="Audience" type="Node2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Selection_BG" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -234.0
+offset_right = 0.5
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_lyk4d")
+
+[node name="JokeContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+offset_left = 141.0
+offset_top = 869.0
+offset_right = 1001.0
+offset_bottom = 1062.0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 25
+script = ExtResource("3_cpumt")
+symbol_colors = Array[Color]([Color(0.886275, 0.192157, 0.0941176, 1), Color(0.937255, 0.8, 0, 1), Color(0, 0, 0, 1), Color(0.905882, 0.282353, 0.698039, 1), Color(0, 0.345098, 1, 1), Color(0.72549, 0.368627, 0.243137, 1), Color(1, 1, 1, 1)])
+
+[node name="JokeCard" parent="Control/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeCard2" parent="Control/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeCard3" parent="Control/JokeContainer" instance=ExtResource("5_ylw10")]
+layout_mode = 2
+
+[node name="JokeRequestContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 673.0
+offset_top = 345.0
+offset_right = 1867.0
+offset_bottom = 431.0
+theme_override_constants/separation = 16
+
+[node name="JokeRequest" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest2" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest3" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest4" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="JokeRequest5" parent="Control/JokeRequestContainer" instance=ExtResource("5_hrv30")]
+visible = false
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(805, 193)
+layout_mode = 0
+offset_left = 1034.0
+offset_top = 869.0
+offset_right = 1839.0
+offset_bottom = 1062.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2srcm")
+
+[node name="InventoryContainer" type="HBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="JokeInventoryItem" parent="Control/PanelContainer/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2
+
+[node name="JokeInventoryItem2" parent="Control/PanelContainer/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2
+
+[node name="JokeInventoryItem3" parent="Control/PanelContainer/InventoryContainer" instance=ExtResource("7_8r16t")]
+layout_mode = 2
+
+[node name="CardHighlight" type="TextureRect" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -819.0
+offset_top = 314.0
+offset_right = -533.0
+offset_bottom = 533.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_2we5b")

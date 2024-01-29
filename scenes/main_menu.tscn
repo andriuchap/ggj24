@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://0m4wlars5lmb"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_ddpjb"]
+[ext_resource type="Texture2D" uid="uid://csxaoalqgdlmm" path="res://assets/sprites/main_menu/Title.png" id="2_a72tq"]
+[ext_resource type="Texture2D" uid="uid://5qs85exefxcb" path="res://assets/sprites/main_menu/Exit.png" id="2_en504"]
+[ext_resource type="Texture2D" uid="uid://82371g4mlypu" path="res://assets/sprites/main_menu/Play.png" id="3_jfjse"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h4i34"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uca8i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ep1jq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e0kh8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lximu"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ddpjb")
+
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_a72tq")
+
+[node name="Exit" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.5
+offset_top = -287.0
+offset_right = 175.5
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("2_en504")
+
+[node name="Play" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -175.5
+offset_top = -409.0
+offset_right = 175.5
+offset_bottom = -208.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_jfjse")
+
+[node name="PlayGame" type="Button" parent="."]
+custom_minimum_size = Vector2(275, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = 182.0
+offset_right = 137.5
+offset_bottom = 282.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h4i34")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uca8i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ep1jq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_e0kh8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lximu")
+text = "
+"
+
+[node name="ExitGame" type="Button" parent="."]
+custom_minimum_size = Vector2(275, 100)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -137.5
+offset_top = 302.0
+offset_right = 137.5
+offset_bottom = 402.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_h4i34")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_uca8i")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ep1jq")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_e0kh8")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lximu")
+text = "
+"
