@@ -87,6 +87,7 @@ func _audience_finished_walking():
 		player_crow.get_node("Walk").finished_walking.connect(_player_at_mic)
 
 func _player_at_mic():
+	$AudioStreamPlayer.play()
 	_start_game()
 	_new_turn()
 
