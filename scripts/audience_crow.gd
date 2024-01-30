@@ -49,3 +49,4 @@ func walk_to_audience():
 
 func _finished_walking():
 	$Crow.idle()
+	$Walk.finished_walking.disconnect(_finished_walking)

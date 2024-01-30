@@ -19,7 +19,7 @@ func set_joke_texture(joke):
 	panel_style_box.texture = card_textures[joke]
 	
 func _set_btn_enabled(value):
-	pick_btn.disabled = !value
+	$Button.disabled = !value
 	pick_btn.visible = value
 
 func _button_pressed():

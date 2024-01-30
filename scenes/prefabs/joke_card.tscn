@@ -77,4 +77,5 @@ autowrap_mode = 2
 
 [node name="PickBtn" type="TextureRect" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("3_vyoyi")

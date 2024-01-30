@@ -20,12 +20,15 @@ var available_spaces = []
 var audience_crows = []
 var walking_crows = 0
 
+var laugh_timer
+
 func _ready():
 	_gather_request_containers()
 	_gather_joke_cards()
 	_set_enable_joke_cards(false)
 	_gather_inventory_slots()
 	_set_enable_inventory_slots(false)
+	_initialize_laugh_timer()
 	set_up()
 	
 func set_up():
@@ -104,7 +107,8 @@ func _start_game():
 	_set_enable_joke_cards(true)
 
 func _new_turn():
-	_set_inventory_slots_for_telling()
+	#_set_inventory_slots_for_telling()
+	_enable_actions()
 	_handle_requests()
 	_randomize_cards()
 
@@ -186,15 +190,40 @@ func _try_match_single_symbol(request_sequence, symbol):
 			return {"result": true, "index": j}
 	return {"result": false}
 
+var last_request_was_full = false
+
 func _complete_request(request_index):
 	game_jokes.remove_at(request_index)
 	jokes_told += 1
 	_update_request_containers()
 	_crows_laugh()
 
+func _complete_full_request(request_index):
+	last_request_was_full = true
+	_complete_request(request_index)
+
+func _complete_partial_request(request_index):
+	last_request_was_full = false
+	_complete_request(request_index)
+
+
 func _crows_laugh():
 	for crow in audience_crows:
 		crow.laugh()
+	laugh_timer.start()
+
+func _initialize_laugh_timer():
+	laugh_timer = Timer.new()
+	add_child(laugh_timer)
+	laugh_timer.one_shot = true
+	laugh_timer.timeout.connect(_laugh_timeout)
+	laugh_timer.wait_time = 4
+
+func _laugh_timeout():
+	if last_request_was_full:
+		_enable_actions()
+	else:
+		_new_turn()
 
 var cards = []
 
@@ -331,7 +360,7 @@ func _player_crow_joke_finished():
 					# we finished the pattern!
 					# crows laugh!
 					# next turn!
-					_complete_request(i)
+					_complete_full_request(i)
 					_clear_inventory_slot(selected_slot)
 					return
 	# if we fall through here, we didn't complete any full matches
@@ -339,13 +368,13 @@ func _player_crow_joke_finished():
 	for i in range(game_jokes.size()):
 		if game_jokes[i].is_full:
 			if _try_incomplete_match_pattern(game_jokes[i].joke_sequence, joke_pattern):
-				_complete_request(i)
+				_complete_partial_request(i)
 				_clear_inventory_slot(selected_slot)
 				#request complete, crows laugh a little
-				_new_turn()
 				return
 	# if we fall through here, we didn't find any incomplete matches either
 	# partly match some of the requests
+	var any_requests_complete = false
 	for k in range(joke_pattern.size()):
 		for i in range(game_jokes.size()):
 			if game_jokes[i].is_full:
@@ -353,8 +382,12 @@ func _player_crow_joke_finished():
 				if match_result.result:
 					game_jokes[i].joke_sequence.remove_at(match_result.index)
 					if game_jokes[i].joke_sequence.size() == 0:
-						_complete_request(i)
+						_complete_partial_request(i)
+						any_requests_complete = true
 					break
 	_clear_inventory_slot(selected_slot)
 	_update_request_containers()
-	_new_turn()
+	# if no rquests were complete, start a new turn
+	# otherwise, the complete partial requests calls new turn
+	if not any_requests_complete:
+		_new_turn()
