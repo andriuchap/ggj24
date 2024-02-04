@@ -613,15 +613,13 @@ texture = ExtResource("2_ykyp2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("8_414lf")
+texture = ExtResource("3_4io3p")
 centered = false
 offset = Vector2(-119, -221)
 
 [node name="Sprite2D2" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cu18a")
-animation = &"laugh1"
-frame = 14
-frame_progress = 1.0
+animation = &"idle"
 centered = false
 offset = Vector2(-119, -221)
 

@@ -12,6 +12,8 @@ func _ready():
 	$ExitGame.mouse_entered.connect(_exit_mouse_entered)
 	$ExitGame.mouse_exited.connect(_exit_mouse_exited)
 	
+	$AnimationPlayer.animation_finished.connect(_intro_animation_finished)
+
 func _play_mouse_entered():
 	$Play.texture = play_game_hover
 	
@@ -23,3 +25,8 @@ func _exit_mouse_entered():
 	
 func _exit_mouse_exited():
 	$Exit.texture = exit_game_normal
+
+func _intro_animation_finished(anim):
+	if anim == "appear_anim":
+		$SecondaryAudioStream.stream = load("res://assets/sounds/main_menu/neon_loop.ogg")
+		$SecondaryAudioStream.play()
